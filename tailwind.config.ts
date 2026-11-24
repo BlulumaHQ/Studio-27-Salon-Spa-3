@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ['Lora', 'serif'],
-        body: ['Plus Jakarta Sans', 'sans-serif'],
+        heading: ['Instrument Serif', 'serif'],
+        body: ['DM Sans', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -51,12 +51,13 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        spa: {
-          warm: "hsl(var(--spa-warm))",
-          dark: "hsl(var(--spa-dark))",
-          cream: "hsl(var(--spa-cream))",
-          gold: "hsl(var(--spa-gold))",
-        },
+        sand: "#ECE5DA",
+        paper: "#F6F1EA",
+        ink: "#2B2420",
+        clay: "#A4573A",
+        blush: "#E9B79F",
+        line: "#CFC3B3",
+        taupe: "#5E534A",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

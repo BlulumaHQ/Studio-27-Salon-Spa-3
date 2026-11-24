@@ -1,74 +1,37 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-
-const navLinks = [
-  { label: "Home", to: "/" },
-  { label: "Services", to: "/services" },
-  { label: "Shop", to: "/shop" },
-  { label: "Contact Us", to: "/contact-us" },
-];
+import { NAV, SITE } from "@/lib/site";
 
 const Header = () => {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const location = useLocation();
+  const [open, setOpen] = useState(false);
+  const { pathname } = useLocation();
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
-      <div className="container-spa flex items-center justify-between h-20 md:h-[85px]">
-        {/* Logo */}
-        <Link to="/" className="flex items-center" style={{ height: 75 }}>
-          <span className="font-heading text-2xl md:text-[28px] font-bold tracking-tight text-foreground">
-            Studio 21
-          </span>
-          <span className="hidden sm:inline font-body text-xs tracking-widest uppercase text-muted-foreground ml-3 mt-1">
-            Salon & Spa
-          </span>
+    <>
+      <div className="bg-ink px-5 py-2.5 text-center font-body text-[13px] text-sand">
+        Now offering microblading —{" "}
+        <Link to="/services" className="border-b border-blush text-blush hover:text-white">
+          book a consultation
         </Link>
-
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.to}
-              to={link.to}
-              className={`font-body text-sm tracking-wide uppercase transition-colors duration-200 hover:text-primary ${
-                location.pathname === link.to
-                  ? "text-primary font-semibold"
-                  : "text-foreground/70"
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
-          <Link to="/contact-us" className="btn-primary text-sm">
-            Book Online
-          </Link>
-        </nav>
-
-        {/* Mobile Toggle */}
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden p-2 text-foreground"
-          aria-label="Toggle menu"
-        >
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
       </div>
 
-      {/* Mobile Nav */}
-      {mobileOpen && (
-        <div className="md:hidden bg-background border-t border-border">
-          <nav className="container-spa py-6 flex flex-col gap-4">
-            {navLinks.map((link) => (
+      <header className="sticky top-0 z-50 bg-sand/95 backdrop-blur-sm">
+        <div className="wrap flex items-center justify-between gap-6 py-5">
+          <Link to="/" className="font-heading text-[30px] leading-none text-ink md:text-[32px]">
+            {SITE.name}
+            <span className="text-clay">.</span>
+          </Link>
+
+          <nav className="hidden items-center gap-2 md:flex" aria-label="Main">
+            {NAV.map((link) => (
               <Link
                 key={link.to}
                 to={link.to}
-                onClick={() => setMobileOpen(false)}
-                className={`font-body text-base tracking-wide py-2 transition-colors ${
-                  location.pathname === link.to
-                    ? "text-primary font-semibold"
-                    : "text-foreground/70"
+                className={`rounded-full border px-[18px] py-2.5 font-body text-sm transition-colors ${
+                  pathname === link.to
+                    ? "border-ink bg-ink text-sand"
+                    : "border-line text-ink hover:border-ink"
                 }`}
               >
                 {link.label}
@@ -76,15 +39,44 @@ const Header = () => {
             ))}
             <Link
               to="/contact-us"
-              onClick={() => setMobileOpen(false)}
-              className="btn-primary text-center mt-2"
+              className="ml-1 rounded-full bg-clay px-[22px] py-2.5 font-body text-sm font-medium text-[#FFF8F2] transition-colors hover:bg-ink"
             >
               Book Online
             </Link>
           </nav>
+
+          <button
+            type="button"
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-line text-ink md:hidden"
+            onClick={() => setOpen(!open)}
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
         </div>
-      )}
-    </header>
+
+        {open && (
+          <nav className="wrap flex flex-col gap-2 pb-6 md:hidden" aria-label="Mobile">
+            {NAV.map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                onClick={() => setOpen(false)}
+                className={`rounded-full border px-5 py-3.5 font-body text-base ${
+                  pathname === link.to ? "border-ink bg-ink text-sand" : "border-line text-ink"
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <Link to="/contact-us" onClick={() => setOpen(false)} className="btn-clay mt-1">
+              Book Online
+            </Link>
+          </nav>
+        )}
+      </header>
+    </>
   );
 };
 

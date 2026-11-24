@@ -1,114 +1,47 @@
 import { Link } from "react-router-dom";
+import { NAV, SITE } from "@/lib/site";
 
 const Footer = () => {
   return (
-    <footer className="bg-spa-dark text-background/80">
-      {/* Main Footer */}
-      <div className="container-spa section-padding">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-6">
-          {/* Column 1: Logo + description */}
-          <div className="md:col-span-1">
-            <span className="font-heading text-2xl font-bold text-background block mb-4">
-              Studio 21
-            </span>
-            <p className="font-body text-sm leading-relaxed text-background/60">
-              Award-winning hydro spa and salon located in the historic downtown
-              Ashland area. Serving our community with world-class treatments
-              since 1996.
-            </p>
+    <footer className="wrap pb-8 pt-4">
+      <div className="flex flex-col gap-10 border-t border-ink pt-12 lg:flex-row lg:items-end lg:justify-between">
+        <Link to="/" className="font-heading text-[64px] leading-[0.9] tracking-[-0.03em] text-ink sm:text-[96px] lg:text-[140px]">
+          {SITE.name}
+          <span className="text-clay">.</span>
+        </Link>
+
+        <div className="grid grid-cols-2 gap-8 font-body text-[15px] text-ink sm:flex sm:gap-14">
+          <div className="flex flex-col gap-2.5">
+            <span className="eyebrow">Visit</span>
+            <span>{SITE.street}</span>
+            <span>{SITE.city}</span>
+            <a href={SITE.phoneHref} className="hover:text-clay">{SITE.phone}</a>
           </div>
-
-          {/* Column 2: Empty spacer */}
-          <div className="hidden md:block" />
-
-          {/* Column 3: Navigation */}
-          <div>
-            <h4 className="font-heading text-base font-semibold text-background mb-4">
-              Navigation
-            </h4>
-            <ul className="space-y-2.5">
-              {[
-                { label: "Home", to: "/" },
-                { label: "Services", to: "/services" },
-                { label: "Shop", to: "/shop" },
-                { label: "Contact Us", to: "/contact-us" },
-              ].map((link) => (
-                <li key={link.to}>
-                  <Link
-                    to={link.to}
-                    className="font-body text-sm text-background/60 hover:text-primary transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 4: Services */}
-          <div>
-            <h4 className="font-heading text-base font-semibold text-background mb-4">
-              Services
-            </h4>
-            <ul className="space-y-2.5">
-              {["Massage", "Facials", "Manicures", "Pedicures", "Salt Scrubs", "Microblading"].map(
-                (service) => (
-                  <li key={service}>
-                    <Link
-                      to="/services"
-                      className="font-body text-sm text-background/60 hover:text-primary transition-colors"
-                    >
-                      {service}
-                    </Link>
-                  </li>
-                )
-              )}
-            </ul>
-          </div>
-
-          {/* Column 5: Contact */}
-          <div>
-            <h4 className="font-heading text-base font-semibold text-background mb-4">
-              Visit Us
-            </h4>
-            <div className="font-body text-sm text-background/60 space-y-2.5">
-              <p>Historic Downtown Ashland</p>
-              <p>Ashland, Kentucky</p>
-              <Link
-                to="/contact-us"
-                className="inline-block mt-3 text-primary hover:text-primary/80 transition-colors font-medium"
-              >
-                Get Directions →
+          <div className="flex flex-col gap-2.5">
+            <span className="eyebrow">Explore</span>
+            {NAV.slice(1).map((l) => (
+              <Link key={l.to} to={l.to} className="hover:text-clay">
+                {l.label}
               </Link>
-            </div>
+            ))}
+            <Link to="/contact-us" className="hover:text-clay">Book Online</Link>
+          </div>
+          <div className="col-span-2 flex flex-col gap-2.5 sm:col-span-1">
+            <span className="eyebrow">Hours</span>
+            {SITE.hours.map((h) => (
+              <span key={h.days}>
+                {h.days} · {h.time}
+              </span>
+            ))}
           </div>
         </div>
       </div>
 
-      {/* Copyright Bar */}
-      <div className="border-t border-background/10">
-        <div className="container-spa py-5 text-center">
-          <p className="font-body text-xs text-background/40">
-            © 2026 Studio 21 Salon and Spa. All rights reserved. | Web Design by{" "}
-            <a
-              href="https://bluluma.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-background/60 transition-colors"
-            >
-              Bluluma
-            </a>{" "}
-            | Powered by{" "}
-            <a
-              href="https://swiftlift.app"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-background/60 transition-colors"
-            >
-              SwiftLift
-            </a>
-          {" "}<span className="block mt-1 opacity-80" data-concept-note>Design concept for portfolio purposes only. Not the official website of Studio 21 Salon &amp; Spa.</span></p>
-        </div>
+      <div className="mt-12 flex flex-col gap-2 font-body text-[13px] text-taupe sm:flex-row sm:justify-between">
+        <span>
+          © {new Date().getFullYear()} {SITE.fullName} · A fictional brand created as a design case study.
+        </span>
+        <span>Web Design by Bluluma | Powered by SwiftLift</span>
       </div>
     </footer>
   );

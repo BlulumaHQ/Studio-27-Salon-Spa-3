@@ -1,153 +1,110 @@
+import { useState } from "react";
 import Layout from "@/components/Layout";
-import { MapPin } from "lucide-react";
+import { SITE } from "@/lib/site";
 
 const ContactUs = () => {
+  const [sent, setSent] = useState(false);
+
   return (
     <Layout>
-      {/* Hero */}
-      <section className="bg-spa-cream section-padding">
-        <div className="container-spa text-center max-w-3xl mx-auto">
-          <p className="font-body text-sm tracking-[0.3em] uppercase text-primary mb-4">
-            Get in Touch
-          </p>
-          <h1 className="heading-hero text-foreground mb-6">Contact Us</h1>
-          <p className="text-body text-muted-foreground">
-            We'd love to hear from you. Reach out to book an appointment or ask any
-            questions about our services.
+      <section className="wrap pb-16 pt-12 md:pb-24 md:pt-16">
+        <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+          <h1 className="display-xl">
+            Come take a <em>break.</em>
+          </h1>
+          <p className="lead max-w-[380px] lg:pb-3">
+            Book an appointment or ask us anything about our treatments — we’ll get back to you soon.
           </p>
         </div>
       </section>
 
-      {/* Contact Content */}
-      <section className="section-padding">
-        <div className="container-spa grid md:grid-cols-2 gap-12 lg:gap-20">
-          {/* Form */}
-          <div>
-            <h2 className="heading-section text-foreground mb-6">Send Us a Message</h2>
-            <form
-              onSubmit={(e) => e.preventDefault()}
-              className="space-y-5"
-            >
-              <div className="grid sm:grid-cols-2 gap-5">
-                <div>
-                  <label className="font-body text-sm font-medium text-foreground block mb-1.5">
-                    First Name
-                  </label>
-                  <input
-                    type="text"
-                    className="w-full px-4 py-3 rounded bg-background border border-border font-body text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-                    placeholder="Your first name"
-                    required
-                  />
-                </div>
-                <div>
-                  <label className="font-body text-sm font-medium text-foreground block mb-1.5">
-                    Last Name
-                  </label>
-                  <input
-                    type="text"
-                    className="w-full px-4 py-3 rounded bg-background border border-border font-body text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-                    placeholder="Your last name"
-                    required
-                  />
-                </div>
-              </div>
-              <div>
-                <label className="font-body text-sm font-medium text-foreground block mb-1.5">
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  className="w-full px-4 py-3 rounded bg-background border border-border font-body text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-                  placeholder="your@email.com"
-                  required
-                />
-              </div>
-              <div>
-                <label className="font-body text-sm font-medium text-foreground block mb-1.5">
-                  Phone Number
-                </label>
-                <input
-                  type="tel"
-                  className="w-full px-4 py-3 rounded bg-background border border-border font-body text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-                  placeholder="(555) 000-0000"
-                />
-              </div>
-              <div>
-                <label className="font-body text-sm font-medium text-foreground block mb-1.5">
-                  Service Interest
-                </label>
-                <select className="w-full px-4 py-3 rounded bg-background border border-border font-body text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary">
-                  <option value="">Select a service</option>
-                  <option>Massage Therapy</option>
-                  <option>Facials & Skin Care</option>
-                  <option>Manicures</option>
-                  <option>Pedicures</option>
-                  <option>Salt Scrubs</option>
-                  <option>Microblading</option>
-                  <option>Other</option>
-                </select>
-              </div>
-              <div>
-                <label className="font-body text-sm font-medium text-foreground block mb-1.5">
-                  Message
-                </label>
-                <textarea
-                  rows={5}
-                  className="w-full px-4 py-3 rounded bg-background border border-border font-body text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary resize-none"
-                  placeholder="Tell us how we can help..."
-                  required
-                />
-              </div>
-              <button type="submit" className="btn-primary w-full sm:w-auto">
-                Send Message
-              </button>
-            </form>
+      <section className="wrap grid gap-6 pb-20 md:pb-32 lg:grid-cols-5">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            setSent(true);
+          }}
+          className="flex flex-col gap-5 rounded bg-paper p-8 md:p-12 lg:col-span-3"
+        >
+          <h2 className="display-md">
+            Send us a <em>message</em>
+          </h2>
+          <div className="grid gap-5 sm:grid-cols-2">
+            <div className="flex flex-col gap-2">
+              <label htmlFor="first" className="font-body text-sm font-medium">First name</label>
+              <input id="first" type="text" required className="field" />
+            </div>
+            <div className="flex flex-col gap-2">
+              <label htmlFor="last" className="font-body text-sm font-medium">Last name</label>
+              <input id="last" type="text" required className="field" />
+            </div>
           </div>
-
-          {/* Info */}
-          <div className="space-y-10">
-            <div>
-              <h3 className="heading-sub text-foreground mb-4">Our Location</h3>
-              <div className="flex items-start gap-3 text-body text-muted-foreground">
-                <MapPin className="w-5 h-5 mt-1 text-primary shrink-0" />
-                <div>
-                  <p className="font-semibold text-foreground">Studio 21 Salon and Spa</p>
-                  <p>Historic Downtown Ashland</p>
-                  <p>Ashland, Kentucky</p>
-                </div>
-              </div>
+          <div className="grid gap-5 sm:grid-cols-2">
+            <div className="flex flex-col gap-2">
+              <label htmlFor="email" className="font-body text-sm font-medium">Email</label>
+              <input id="email" type="email" required placeholder="you@email.com" className="field" />
             </div>
-
-            <div>
-              <h3 className="heading-sub text-foreground mb-4">Why Choose Us</h3>
-              <ul className="space-y-3">
-                {[
-                  "Award-winning hydro spa and salon since 1996",
-                  "Best in Tri-State & Best in Ashland winner",
-                  "Reader's Choice Awards recipient",
-                  "2016 Northeast Kentucky Small Business of the Year",
-                  "Global Salon Awards finalist (UCLA Anderson School of Business)",
-                  "Highly trained team of professionals",
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-body text-muted-foreground">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2.5 shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
+            <div className="flex flex-col gap-2">
+              <label htmlFor="phone" className="font-body text-sm font-medium">Phone</label>
+              <input id="phone" type="tel" className="field" />
             </div>
+          </div>
+          <div className="flex flex-col gap-2">
+            <label htmlFor="service" className="font-body text-sm font-medium">Treatment</label>
+            <select id="service" className="field appearance-none">
+              <option value="">Select a treatment</option>
+              <option>Massage Therapy</option>
+              <option>Facials &amp; Skin Care</option>
+              <option>Manicures &amp; Pedicures</option>
+              <option>Salt Scrubs &amp; Body</option>
+              <option>Microblading</option>
+              <option>Gift Card</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div className="flex flex-col gap-2">
+            <label htmlFor="message" className="font-body text-sm font-medium">Message</label>
+            <textarea
+              id="message"
+              rows={5}
+              required
+              className="w-full resize-none rounded-[20px] border border-line bg-white px-5 py-4 font-body text-[15px] text-ink focus:outline-none focus:ring-2 focus:ring-clay"
+            />
+          </div>
+          <button type="submit" className="btn-clay self-start">Send message</button>
+          {sent && (
+            <p className="font-body text-sm text-taupe" role="status">
+              Thanks! This is a design case study, so the form is a demo and no message was sent.
+            </p>
+          )}
+        </form>
 
-            <div className="bg-primary/10 rounded-lg p-8">
-              <h3 className="heading-sub text-foreground mb-3">
-                Friendly Service, Relaxing Environment
-              </h3>
-              <p className="text-body text-muted-foreground">
-                From the moment you walk in the door, our focus is on your complete
-                relaxation. Come take a break with us and enjoy our small town
-                friendliness along with world-class spa treatments.
-              </p>
-            </div>
+        <div className="flex flex-col gap-6 lg:col-span-2">
+          <div className="flex flex-col gap-3 rounded border border-line p-8">
+            <span className="eyebrow">Visit</span>
+            <span className="font-heading text-[30px] leading-[1.15]">
+              {SITE.street}
+              <br />
+              {SITE.city}
+            </span>
+          </div>
+          <div className="flex flex-col gap-2 rounded border border-line p-8 font-body text-[15px]">
+            <span className="eyebrow mb-1">Hours</span>
+            {SITE.hours.map((h) => (
+              <span key={h.days} className="flex justify-between gap-4">
+                <span>{h.days}</span>
+                <span className="text-taupe">{h.time}</span>
+              </span>
+            ))}
+          </div>
+          <div className="flex flex-col gap-3 rounded bg-ink p-8 text-sand">
+            <span className="font-body text-[13px] font-semibold uppercase tracking-[0.15em] text-blush">Call or email</span>
+            <a href={SITE.phoneHref} className="font-heading text-[34px] leading-none hover:text-blush">
+              {SITE.phone}
+            </a>
+            <a href={`mailto:${SITE.email}`} className="font-body text-[15px] text-[#D8CCC0] hover:text-blush">
+              {SITE.email}
+            </a>
           </div>
         </div>
       </section>

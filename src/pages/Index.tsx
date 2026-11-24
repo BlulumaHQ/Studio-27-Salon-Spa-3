@@ -1,190 +1,172 @@
 import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
+import { SITE } from "@/lib/site";
 import heroImg from "@/assets/hero-spa.jpg";
-import aboutImg from "@/assets/about-spa.jpg";
-import productsImg from "@/assets/products.jpg";
-import giftCardImg from "@/assets/gift-card.jpg";
+import loungeImg from "@/assets/about-spa.jpg";
 import massageImg from "@/assets/services-massage.jpg";
 import facialImg from "@/assets/services-facial.jpg";
 import scrubImg from "@/assets/services-scrub.jpg";
+import nailsImg from "@/assets/services-nails.jpg";
+import browsImg from "@/assets/services-microblading.jpg";
+import giftImg from "@/assets/gift-card.jpg";
+import productsImg from "@/assets/products.jpg";
+
+const menu = [
+  { title: "Massage", note: "Complete relaxation, start to finish", img: massageImg },
+  { title: "Facials & Skin Care", note: "Customized by professional estheticians", img: facialImg },
+  { title: "Salt Scrubs", note: "Exfoliate, hydrate, renew", img: scrubImg },
+  { title: "Manicures & Pedicures", note: "Unhurried, polished nail care", img: nailsImg },
+  { title: "Microblading", note: "Natural-looking brows, lasting results", img: browsImg, isNew: true },
+];
 
 const Index = () => {
   return (
     <Layout>
       {/* Hero */}
-      <section className="relative h-[85vh] min-h-[600px] flex items-center overflow-hidden">
-        <div className="absolute inset-0">
-          <img src={heroImg} alt="Spa atmosphere with orchids and stones" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-spa-dark/40" />
-        </div>
-        <div className="container-spa relative z-10">
-          <p className="font-body text-sm tracking-[0.3em] uppercase text-background/80 mb-4">
-            Since 1996 · Historic Downtown Ashland
-          </p>
-          <h1 className="heading-hero text-background max-w-2xl">
-            Relax. Refresh.<br />Re-imagine.
+      <section className="wrap pt-10 md:pt-14">
+        <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+          <h1 className="display-xl max-w-[900px]">
+            Relax, refresh &amp; <em>re-imagine.</em>
           </h1>
-          <p className="text-body text-background/80 max-w-lg mt-6">
-            Book a time at our tranquil facility for manicures, pedicures, massage,
-            facials, and skin treatments.
-          </p>
-          <div className="flex flex-wrap gap-4 mt-8">
-            <Link to="/contact-us" className="btn-primary">Book Online</Link>
-            <Link to="/services" className="btn-outline border-background/60 text-background hover:bg-background hover:text-foreground">
-              Our Services
+          <div className="flex max-w-[340px] flex-col gap-6 lg:pb-3">
+            <p className="lead">
+              {SITE.city}’s hydro spa and salon. Massage, facials, skin and nail care — since {SITE.since}.
+            </p>
+            <Link to="/contact-us" className="btn-dark self-start">
+              Book your visit →
             </Link>
           </div>
         </div>
-      </section>
 
-      {/* Trust Signals */}
-      <section className="bg-accent">
-        <div className="container-spa py-10 flex flex-wrap justify-center gap-x-10 gap-y-4 text-center">
-          {["Best in Tri-State", "Best in Ashland", "Reader's Choice Awards", "NE Kentucky Small Business of the Year"].map((award) => (
-            <div key={award} className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-primary inline-block" />
-              <span className="font-body text-sm text-muted-foreground tracking-wide">{award}</span>
-            </div>
+        <div className="relative mt-10 md:mt-12">
+          <img
+            src={heroImg}
+            alt="Orchids, stones and warm towels at Studio 27"
+            className="h-[420px] w-full rounded object-cover md:h-[600px]"
+          />
+          <div className="absolute bottom-4 right-4 flex max-w-[260px] flex-col gap-1.5 rounded bg-sand px-6 py-5 md:bottom-7 md:right-7">
+            <span className="eyebrow">Visit us</span>
+            <span className="font-heading text-[24px] leading-[1.1] md:text-[26px]">
+              {SITE.street}, {SITE.city}
+            </span>
+          </div>
+        </div>
+
+        <div className="mt-8 flex flex-wrap gap-3">
+          {SITE.awards.map((a) => (
+            <span key={a} className="pill">
+              ★ {a}
+            </span>
           ))}
         </div>
       </section>
 
-      {/* About Section */}
-      <section className="section-padding">
-        <div className="container-spa grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
-          <div className="rounded-lg overflow-hidden">
-            <img src={aboutImg} alt="Studio 21 spa interior" className="w-full h-[400px] lg:h-[500px] object-cover" />
-          </div>
-          <div>
-            <p className="font-body text-sm tracking-[0.2em] uppercase text-primary mb-3">About Us</p>
-            <h2 className="heading-section text-foreground mb-6">
-              Award-Winning Hydro Spa & Salon
-            </h2>
-            <p className="text-body text-muted-foreground mb-4">
-              Studio 21 Salon and Spa is located in the historic downtown Ashland area.
-              Since opening our doors in 1996, we have grown from a small two chair salon
-              to an award-winning hydro spa and salon.
-            </p>
-            <p className="text-body text-muted-foreground mb-6">
-              Our highly trained team of professionals are here to provide you with a
-              complete experience of personal well-being. We strive to build a trusting
-              relationship with our clients, and hope you will enjoy our small town
-              friendliness along with our world-class spa treatments and superior service.
-            </p>
-            <Link to="/services" className="btn-primary">Explore Services</Link>
-          </div>
+      {/* Story */}
+      <section className="wrap section grid gap-8 lg:grid-cols-4 lg:gap-16">
+        <p className="eyebrow">Since {SITE.since}</p>
+        <div className="flex flex-col gap-8 lg:col-span-3">
+          <p className="font-heading text-[32px] leading-[1.15] md:text-[44px] lg:text-[54px]">
+            What began as a small two-chair salon is now a full hydro spa — still run with{" "}
+            <em className="italic text-clay">small-town friendliness</em> and world-class care.
+          </p>
+          <Link to="/services" className="text-link self-start">
+            Explore the menu
+          </Link>
         </div>
       </section>
 
-      {/* Services Preview */}
-      <section className="section-padding bg-spa-cream">
-        <div className="container-spa">
-          <div className="text-center mb-14">
-            <p className="font-body text-sm tracking-[0.2em] uppercase text-primary mb-3">Our Services</p>
-            <h2 className="heading-section text-foreground">A Complete Spa Experience</h2>
+      {/* Menu */}
+      <section className="wrap pb-20 md:pb-32 lg:pb-36">
+        <div className="grid gap-12 lg:grid-cols-2 lg:gap-14">
+          <div className="flex flex-col gap-6">
+            <h2 className="display-lg">
+              The <em>menu</em>
+            </h2>
+            <img
+              src={loungeImg}
+              alt="Studio 27 relaxation lounge"
+              className="h-[360px] w-full rounded object-cover md:h-[560px]"
+            />
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { img: massageImg, title: "Massage Therapy", desc: "From the moment you walk in the door, our focus is on your complete relaxation. From massage to salt scrubs, our services are a great way to take a step back from the bustle of everyday life." },
-              { img: facialImg, title: "Facials & Skin Care", desc: "Our professional estheticians provide customized facial treatments designed to rejuvenate and restore your skin's natural glow with premium products." },
-              { img: scrubImg, title: "Body Treatments", desc: "Indulge in our luxurious salt scrubs and skin treatments that exfoliate, hydrate, and leave your skin feeling refreshed and renewed." },
-            ].map((service) => (
-              <div key={service.title} className="card-spa group">
-                <div className="overflow-hidden">
-                  <img
-                    src={service.img}
-                    alt={service.title}
-                    className="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="heading-sub text-foreground mb-3">{service.title}</h3>
-                  <p className="font-body text-sm text-muted-foreground leading-relaxed mb-4">{service.desc}</p>
-                  <Link to="/services" className="font-body text-sm font-semibold text-primary hover:text-secondary transition-colors">
-                    Learn More →
-                  </Link>
-                </div>
-              </div>
+          <div className="flex flex-col border-t border-ink lg:mt-24">
+            {menu.map((m) => (
+              <Link
+                key={m.title}
+                to="/services"
+                className="group flex items-center gap-5 border-b border-line py-6 md:gap-6"
+              >
+                <img src={m.img} alt="" className="h-20 w-20 shrink-0 rounded object-cover md:h-24 md:w-24" />
+                <span className="flex flex-1 flex-col gap-1.5">
+                  <span className="font-heading text-[26px] leading-none transition-colors group-hover:text-clay md:text-[32px]">
+                    {m.title}
+                    {m.isNew && (
+                      <span className="ml-3 inline-block -translate-y-1 rounded-full bg-clay px-2.5 py-1 align-middle font-body text-[11px] uppercase tracking-[0.12em] text-[#FFF8F2]">
+                        New
+                      </span>
+                    )}
+                  </span>
+                  <span className="font-body text-sm text-taupe">{m.note}</span>
+                </span>
+                <span className="font-body text-[22px] text-clay transition-transform group-hover:translate-x-1">→</span>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* New Service Highlight */}
-      <section className="section-padding">
-        <div className="container-spa">
-          <div className="bg-primary/10 rounded-lg p-8 md:p-14 flex flex-col md:flex-row items-center gap-8">
-            <div className="flex-1">
-              <span className="font-body text-xs tracking-[0.25em] uppercase text-secondary font-semibold">Big News</span>
-              <h2 className="heading-section text-foreground mt-2 mb-4">We Now Offer Microblading!</h2>
-              <p className="text-body text-muted-foreground mb-6">
-                Achieve perfectly shaped, natural-looking brows with our professional
-                microblading service. Our trained specialists use precision techniques
-                for beautiful, lasting results.
-              </p>
-              <Link to="/services" className="btn-secondary">Learn More</Link>
-            </div>
-            <div className="w-full md:w-80 lg:w-96 shrink-0">
-              <img src={productsImg} alt="Spa products collection" className="w-full rounded-lg object-cover h-64 md:h-80" />
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Testimonial */}
-      <section className="section-padding bg-spa-cream">
-        <div className="container-spa max-w-3xl text-center">
-          <p className="font-body text-sm tracking-[0.2em] uppercase text-primary mb-6">Testimonials</p>
-          <blockquote className="font-heading text-2xl md:text-3xl italic text-foreground leading-relaxed mb-6">
-            "Great experience! Definitely would recommend!"
-          </blockquote>
-          <p className="font-body text-base text-muted-foreground font-medium">— Brianna</p>
-        </div>
-      </section>
-
-      {/* Gift Cards */}
-      <section className="section-padding">
-        <div className="container-spa grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
-          <div>
-            <p className="font-body text-sm tracking-[0.2em] uppercase text-primary mb-3">Gift Cards</p>
-            <h2 className="heading-section text-foreground mb-6">
-              Give the Gift of Relaxation
-            </h2>
-            <p className="text-body text-muted-foreground mb-6">
-              Treat someone special to a spa experience they'll never forget.
-              Our gift cards are perfect for birthdays, holidays, or any occasion
-              that calls for a little pampering.
-            </p>
-            <Link to="/contact-us" className="btn-primary">Buy Now</Link>
-          </div>
-          <div className="rounded-lg overflow-hidden">
-            <img src={giftCardImg} alt="Spa gift card" className="w-full h-80 object-cover" />
-          </div>
-        </div>
-      </section>
-
-      {/* Newsletter */}
-      <section className="bg-secondary/10">
-        <div className="container-spa py-16 md:py-20 text-center max-w-xl mx-auto">
-          <h2 className="heading-section text-foreground mb-3">Join Our Mailing List</h2>
-          <p className="text-body text-muted-foreground mb-8">
-            Sign up to hear from us about specials, sales, and events.
+      <section className="section bg-clay text-[#FFF8F2]">
+        <div className="mx-auto flex max-w-[1100px] flex-col gap-8 px-5 md:px-10">
+          <span className="font-body text-[13px] font-semibold uppercase tracking-[0.15em] text-[#F3D2C2]">
+            Guest notes
+          </span>
+          <p className="font-heading text-[44px] leading-none tracking-[-0.02em] md:text-[68px] lg:text-[92px]">
+            “The calmest hour of my month. <em className="italic">I leave a new person.</em>”
           </p>
-          <form
-            onSubmit={(e) => e.preventDefault()}
-            className="flex flex-col sm:flex-row gap-3"
-          >
-            <input
-              type="email"
-              placeholder="Email Address"
-              className="flex-1 px-5 py-3.5 rounded bg-background border border-border font-body text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-              required
-            />
-            <button type="submit" className="btn-primary whitespace-nowrap">
-              Sign Up
-            </button>
-          </form>
+          <span className="font-body text-base">— Maya R.</span>
         </div>
+      </section>
+
+      {/* Cards */}
+      <section className="wrap section grid gap-6 lg:grid-cols-3">
+        <div className="flex flex-col overflow-hidden rounded bg-paper">
+          <img src={giftImg} alt="Studio 27 gift card" className="h-[260px] w-full object-cover md:h-[300px]" />
+          <div className="flex flex-col gap-4 p-8 md:p-10">
+            <h3 className="text-[38px] leading-[1.05] md:text-[42px]">
+              Give the gift of <em>relaxation</em>
+            </h3>
+            <p className="lead text-[15px]">For birthdays, holidays, or any occasion that calls for a little pampering.</p>
+            <Link to="/shop" className="btn-dark self-start">Buy a gift card</Link>
+          </div>
+        </div>
+        <div className="flex flex-col overflow-hidden rounded bg-paper">
+          <img src={productsImg} alt="Studio 27 spa products" className="h-[260px] w-full object-cover md:h-[300px]" />
+          <div className="flex flex-col gap-4 p-8 md:p-10">
+            <h3 className="text-[38px] leading-[1.05] md:text-[42px]">
+              Take the spa <em>home</em>
+            </h3>
+            <p className="lead text-[15px]">Shop the professional skincare and body products we use in the studio.</p>
+            <Link to="/shop" className="btn-line self-start">Visit the shop</Link>
+          </div>
+        </div>
+        <form
+          onSubmit={(e) => e.preventDefault()}
+          className="flex flex-col justify-end gap-4 rounded bg-ink p-8 text-sand md:p-10"
+        >
+          <h3 className="text-[38px] leading-[1.05] md:text-[42px]">
+            Hear about specials, sales &amp; <em className="italic text-blush">events</em>
+          </h3>
+          <label htmlFor="newsletter-email" className="font-body text-[13px] text-[#BFB3A6]">
+            Email address
+          </label>
+          <input
+            id="newsletter-email"
+            type="email"
+            placeholder="you@email.com"
+            className="-mt-2 w-full rounded-full border border-[#5A4F47] bg-transparent px-5 py-4 font-body text-[15px] text-sand placeholder:text-[#8F8378] focus:outline-none focus:ring-2 focus:ring-blush"
+          />
+          <button type="submit" className="btn-clay">Sign up</button>
+        </form>
       </section>
     </Layout>
   );

@@ -5,115 +5,103 @@ import facialImg from "@/assets/services-facial.jpg";
 import nailsImg from "@/assets/services-nails.jpg";
 import scrubImg from "@/assets/services-scrub.jpg";
 import microbladingImg from "@/assets/services-microblading.jpg";
-import aboutImg from "@/assets/about-spa.jpg";
+import loungeImg from "@/assets/about-spa.jpg";
 
 const services = [
   {
     title: "Massage Therapy",
     img: massageImg,
     description:
-      "From the moment you walk in the door, our focus is on your complete relaxation. Our licensed massage therapists offer a variety of techniques to relieve tension, reduce stress, and restore balance to your body and mind.",
+      "From the moment you walk in the door, our focus is on your complete relaxation. Our licensed massage therapists offer a variety of techniques to relieve tension, reduce stress, and restore balance to body and mind.",
   },
   {
     title: "Facials & Skin Care",
     img: facialImg,
     description:
-      "Our professional estheticians provide customized facial treatments tailored to your unique skin type. Using premium products and proven techniques, we help rejuvenate and restore your skin's natural radiance.",
+      "Customized facial treatments tailored to your skin type. Using premium products and proven techniques, our estheticians help restore your skin’s natural radiance.",
   },
   {
     title: "Manicures & Pedicures",
     img: nailsImg,
     description:
-      "Pamper your hands and feet with our luxurious nail care services. From classic manicures to spa pedicures, we use high-quality products to ensure your nails look and feel their best.",
+      "Pamper your hands and feet — from classic manicures to spa pedicures, with high-quality products so your nails look and feel their best.",
   },
   {
-    title: "Salt Scrubs & Body Treatments",
+    title: "Salt Scrubs & Body",
     img: scrubImg,
     description:
-      "Indulge in our signature body treatments featuring exfoliating salt scrubs that leave your skin silky smooth. Many people underestimate the effect high-quality lotions and oils have on a spa treatment. We guarantee all of our products help you with that extra feeling of zen.",
+      "Signature body treatments with exfoliating salt scrubs, followed by rich lotions and oils that leave skin silky smooth and add that extra feeling of zen.",
   },
   {
     title: "Microblading",
     img: microbladingImg,
     description:
-      "Achieve perfectly shaped, natural-looking brows with our professional microblading service. This semi-permanent technique creates beautiful, defined eyebrows that enhance your features with minimal daily maintenance.",
-    badge: "New Service",
+      "Perfectly shaped, natural-looking brows. This semi-permanent technique creates defined eyebrows that enhance your features with minimal daily maintenance.",
+    isNew: true,
   },
   {
     title: "Skin Treatments",
-    img: aboutImg,
+    img: loungeImg,
     description:
-      "Our advanced skin treatments address a wide range of concerns, from fine lines and uneven texture to hydration and glow. Let our trained professionals help you achieve your skincare goals with personalized treatment plans.",
+      "Advanced treatments for fine lines, uneven texture, hydration and glow — with a personalized plan built around your skincare goals.",
   },
 ];
 
 const Services = () => {
   return (
     <Layout>
-      {/* Hero Banner */}
-      <section className="bg-spa-cream section-padding">
-        <div className="container-spa text-center max-w-3xl mx-auto">
-          <p className="font-body text-sm tracking-[0.3em] uppercase text-primary mb-4">
-            Studio 21 Salon and Spa
-          </p>
-          <h1 className="heading-hero text-foreground mb-6">Our Services</h1>
-          <p className="text-body text-muted-foreground">
-            Book a time at our tranquil facility for manicures, pedicures, massage,
-            facials, and skin treatments. Come take a break with us.
+      <section className="wrap pb-16 pt-12 md:pb-24 md:pt-16">
+        <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+          <h1 className="display-xl">
+            The <em>menu.</em>
+          </h1>
+          <p className="lead max-w-[380px] lg:pb-3">
+            Massage, facials, skin and nail treatments in a tranquil setting. Come take a break with us.
           </p>
         </div>
       </section>
 
-      {/* Services List */}
-      <section className="section-padding">
-        <div className="container-spa space-y-20">
-          {services.map((service, i) => (
-            <div
-              key={service.title}
-              className={`grid md:grid-cols-2 gap-12 lg:gap-20 items-center ${
-                i % 2 === 1 ? "md:[direction:rtl]" : ""
-              }`}
+      <section className="wrap pb-20 md:pb-32">
+        <div className="border-t border-ink">
+          {services.map((s, i) => (
+            <article
+              key={s.title}
+              className="grid gap-6 border-b border-line py-10 md:grid-cols-12 md:items-center md:gap-10 md:py-12"
             >
-              <div className="rounded-lg overflow-hidden md:[direction:ltr]">
-                <img
-                  src={service.img}
-                  alt={service.title}
-                  className="w-full h-80 lg:h-[420px] object-cover"
-                />
-              </div>
-              <div className="md:[direction:ltr]">
-                {service.badge && (
-                  <span className="inline-block font-body text-xs tracking-widest uppercase bg-primary/20 text-primary-foreground px-3 py-1 rounded-full mb-3 font-semibold">
-                    {service.badge}
-                  </span>
-                )}
-                <h2 className="heading-section text-foreground mb-4">
-                  {service.title}
+              <span className="font-heading text-[28px] text-clay md:col-span-1">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <div className="flex flex-col gap-4 md:col-span-6 lg:col-span-5">
+                <h2 className="text-[38px] leading-none md:text-[48px]">
+                  {s.title}
+                  {s.isNew && (
+                    <span className="ml-3 inline-block -translate-y-2 rounded-full bg-clay px-2.5 py-1 align-middle font-body text-[11px] uppercase tracking-[0.12em] text-[#FFF8F2]">
+                      New
+                    </span>
+                  )}
                 </h2>
-                <p className="text-body text-muted-foreground mb-6">
-                  {service.description}
-                </p>
-                <Link to="/contact-us" className="btn-primary">
-                  Book Now
+                <p className="lead">{s.description}</p>
+                <Link to="/contact-us" className="text-link self-start">
+                  Book this treatment
                 </Link>
               </div>
-            </div>
+              <img
+                src={s.img}
+                alt={s.title}
+                className="h-[260px] w-full rounded object-cover md:col-span-5 md:h-[300px] lg:col-span-6"
+              />
+            </article>
           ))}
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="bg-primary/10 section-padding">
-        <div className="container-spa text-center max-w-2xl mx-auto">
-          <h2 className="heading-section text-foreground mb-4">
-            Ready to Relax?
+      <section className="section bg-ink text-sand">
+        <div className="wrap flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+          <h2 className="display-lg max-w-[760px]">
+            Ready to <em className="italic text-blush">relax?</em>
           </h2>
-          <p className="text-body text-muted-foreground mb-8">
-            Come take a break with us. Our team is ready to provide you with a
-            complete experience of personal well-being.
-          </p>
-          <Link to="/contact-us" className="btn-primary">
-            Book Your Appointment
+          <Link to="/contact-us" className="btn-clay self-start">
+            Book your appointment →
           </Link>
         </div>
       </section>
