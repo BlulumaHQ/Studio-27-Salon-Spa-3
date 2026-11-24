@@ -26,7 +26,7 @@ const Index = () => {
       <section className="wrap pt-10 md:pt-14">
         <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <h1 className="display-xl max-w-[900px]">
-            Relax, refresh &amp; <em>re-imagine.</em>
+            Relax, refresh &amp; <em className="whitespace-nowrap">re-imagine.</em>
           </h1>
           <div className="flex max-w-[340px] flex-col gap-6 lg:pb-3">
             <p className="lead">
